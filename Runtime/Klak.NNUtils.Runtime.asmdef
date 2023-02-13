@@ -1,0 +1,22 @@
+{
+    "name": "Klak.NNUtils.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5c2b5ba89f9e74e418232e154bc5cc7a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.barracuda",
+            "expression": "4.0.0",
+            "define": "BARRACUDA_4_0_0_OR_LATER"
+        }
+    ],
+    "noEngineReferences": false
+}

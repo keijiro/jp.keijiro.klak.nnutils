@@ -1,0 +1,13 @@
+{
+  "author": "Keijiro Takahashi",
+  "dependencies": { "com.unity.barracuda": "3.0.0" },
+  "description": "A small collection of utility scripts for Barracuda.",
+  "displayName": "NNUtils",
+  "keywords": [ "unity" ],
+  "license": "Unlicense",
+  "name": "jp.keijiro.klak.nnutils",
+  "repository": "github:keijiro/jp.keijiro.klak.nnutils",
+  "unity": "2020.3",
+  "unityRelease": "0f1",
+  "version": "1.0.0"
+}

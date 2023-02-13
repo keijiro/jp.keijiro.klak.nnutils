@@ -1,0 +1,43 @@
+#pragma kernel Preprocess
+
+// Input
+sampler2D Input;
+uint2 InputSize;
+float4 ColorCoeffs;
+bool InputIsLinear;
+bool OutputIsNCHW;
+
+// Output
+RWStructuredBuffer<float> Output;
+
+// Color space conversion between sRGB and linear space.
+// http://chilliant.blogspot.com/2012/08/srgb-approximations-for-hlsl.html
+float3 Preprocess_LinearToSRGB(float3 c)
+{
+    return max(1.055 * pow(saturate(c), 0.416666667) - 0.055, 0.0);
+}
+
+[numthreads(8, 8, 1)]
+void Preprocess(uint2 id : SV_DispatchThreadID)
+{
+    if (!all(id < InputSize)) return;
+
+    // UV (vertically flipped)
+    float2 uv = float2(0.5 + id.x, InputSize.y - 0.5 - id.y) / InputSize;
+
+    // UV gradients
+    float2 duv_dx = float2(1.0 / InputSize.x, 0);
+    float2 duv_dy = float2(0, -1.0 / InputSize.y);
+
+    // Texture sample
+    float3 rgb = tex2Dgrad(Input, uv, duv_dx, duv_dy).rgb;
+    if (InputIsLinear) rgb = Preprocess_LinearToSRGB(rgb);
+    rgb = rgb * ColorCoeffs.w + ColorCoeffs.xyz;
+
+    // Tensor element output
+    uint offs = (OutputIsNCHW ? 1 : 3) * (id.y * InputSize.x + id.x);
+    uint stride = OutputIsNCHW ? InputSize.x * InputSize.y : 1;
+    Output[offs + stride * 0] = rgb.r;
+    Output[offs + stride * 1] = rgb.g;
+    Output[offs + stride * 2] = rgb.b;
+}

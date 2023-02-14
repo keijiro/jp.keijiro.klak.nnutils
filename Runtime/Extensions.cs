@@ -23,7 +23,7 @@ public static class TensorShapeExtensions
 {
     public static int GetWidth(in this TensorShape shape)
 #if BARRACUDA_4_0_0_OR_LATER
-      => shape[1];
+      => shape[2];
 #else
       => shape.width;
 #endif

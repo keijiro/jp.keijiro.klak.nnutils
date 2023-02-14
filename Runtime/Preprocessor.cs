@@ -17,12 +17,16 @@ public class ImagePreprocess : System.IDisposable
 
     public Tensor Tensor => _tensor;
 
+    public ComputeBuffer Buffer => _tensorData.buffer;
+
     public ImagePreprocess(int width, int height, bool nchwFix = false)
     {
         _width = width;
         _height = height;
 #if BARRACUDA_4_0_0_OR_LATER
         _nchw = nchwFix;
+#else
+        _nchw = false;
 #endif
         var shape = _nchw ? new TensorShape(1, 3, _height, _width) :
                             new TensorShape(1, _height, _width, 3);

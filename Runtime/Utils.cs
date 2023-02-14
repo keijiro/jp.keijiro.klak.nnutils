@@ -29,6 +29,15 @@ public static class BufferUtil
     public unsafe static GraphicsBuffer NewStructured<T>(int length) where T : unmanaged
       => new GraphicsBuffer(GraphicsBuffer.Target.Structured, length, sizeof(T));
 
+    public unsafe static GraphicsBuffer NewAppend<T>(int length) where T : unmanaged
+      => new GraphicsBuffer(GraphicsBuffer.Target.Append, length, sizeof(T));
+
+    public unsafe static GraphicsBuffer NewRaw(int length)
+      => new GraphicsBuffer(GraphicsBuffer.Target.Raw, length, sizeof(uint));
+
+    public unsafe static GraphicsBuffer NewDrawArgs()
+      => new GraphicsBuffer(GraphicsBuffer.Target.IndirectArguments, 4, sizeof(uint));
+
     public static (Tensor, ComputeTensorData) NewTensor(TensorShape shape, string name)
     {
 #if BARRACUDA_4_0_0_OR_LATER

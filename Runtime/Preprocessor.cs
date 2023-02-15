@@ -15,8 +15,8 @@ public class ImagePreprocess : System.IDisposable
 
     public Vector4 ColorCoeffs { get; set; } = new Vector4(-1, -1, -1, 2);
 
+    public bool IsNCHW => _nchw;
     public Tensor Tensor => _tensor;
-
     public ComputeBuffer Buffer => _tensorData.buffer;
 
     public ImagePreprocess(int width, int height, bool nchwFix = false)

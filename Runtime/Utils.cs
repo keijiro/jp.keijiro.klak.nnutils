@@ -14,6 +14,15 @@ public static class RTUtil
         return rt;
     }
 
+    public static RenderTexture NewSingleChannelUAV(int w, int h)
+    {
+        var rt = new RenderTexture(w, h, 0, RenderTextureFormat.R8,
+                                            RenderTextureReadWrite.Linear);
+        rt.enableRandomWrite = true;
+        rt.Create();
+        return rt;
+    }
+
     public static void Destroy(Object o)
     {
         if (o == null) return;

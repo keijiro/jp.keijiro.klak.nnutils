@@ -27,6 +27,13 @@ public static class TensorShapeExtensions
 #else
       => shape.width;
 #endif
+
+    public static int GetHeight(in this TensorShape shape)
+#if BARRACUDA_4_0_0_OR_LATER
+      => shape[1];
+#else
+      => shape.height;
+#endif
 }
 
 public static class ModelInputExtensions

@@ -1,4 +1,4 @@
-using Unity.Barracuda;
+using Unity.Sentis;
 using UnityEngine;
 
 namespace Klak.NNUtils {
@@ -49,14 +49,8 @@ public static class BufferUtil
 
     public static (Tensor, ComputeTensorData) NewTensor(TensorShape shape, string name)
     {
-#if BARRACUDA_4_0_0_OR_LATER
-        var data = new ComputeTensorData(shape, name, false);
-        var tensor = TensorFloat.Zeros(shape);
-        tensor.AttachToDevice(data);
-#else
-        var data = new ComputeTensorData(shape, name, ComputeInfo.ChannelsOrder.NHWC, false);
-        var tensor = new Tensor(shape, data);
-#endif
+        var data = new ComputeTensorData(shape.length, false);
+        var tensor = new Tensor<float>(shape, data);
         return (tensor, data);
     }
 }

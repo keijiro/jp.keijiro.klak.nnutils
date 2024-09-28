@@ -1,4 +1,4 @@
-using Unity.Barracuda;
+using Unity.Sentis;
 using UnityEngine;
 using Klak.NNUtils.Extensions;
 
@@ -23,11 +23,7 @@ public class ImagePreprocess : System.IDisposable
     {
         _width = width;
         _height = height;
-#if BARRACUDA_4_0_0_OR_LATER
         _nchw = nchwFix;
-#else
-        _nchw = false;
-#endif
         var shape = _nchw ? new TensorShape(1, 3, _height, _width) :
                             new TensorShape(1, _height, _width, 3);
         (_tensor, _tensorData) = BufferUtil.NewTensor(shape, "preprocess");

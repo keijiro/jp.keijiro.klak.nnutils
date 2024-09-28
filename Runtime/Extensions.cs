@@ -1,4 +1,4 @@
-using Unity.Barracuda;
+using Unity.Sentis;
 using UnityEngine;
 
 // Extension methods
@@ -22,37 +22,25 @@ public static class ComputeShaderExtensions
 public static class TensorShapeExtensions
 {
     public static int GetWidth(in this TensorShape shape)
-#if BARRACUDA_4_0_0_OR_LATER
       => shape[2];
-#else
-      => shape.width;
-#endif
 
     public static int GetHeight(in this TensorShape shape)
-#if BARRACUDA_4_0_0_OR_LATER
       => shape[1];
-#else
-      => shape.height;
-#endif
 }
 
 public static class ModelInputExtensions
 {
     public static TensorShape GetTensorShape(in this Model.Input input)
-#if BARRACUDA_4_0_0_OR_LATER
       => input.shape.ToTensorShape();
-#else
-      => new TensorShape(input.shape);
-#endif
 }
 
 public static class IWorkerExtensions
 {
-    public static ComputeBuffer PeekOutputBuffer(this IWorker worker)
-      => ((ComputeTensorData)worker.PeekOutput().tensorOnDevice).buffer;
+    public static ComputeBuffer PeekOutputBuffer(this Worker worker)
+      => ((ComputeTensorData)worker.PeekOutput().dataOnBackend).buffer;
 
-    public static ComputeBuffer PeekOutputBuffer(this IWorker worker, string tensorName)
-      => ((ComputeTensorData)worker.PeekOutput(tensorName).tensorOnDevice).buffer;
+    public static ComputeBuffer PeekOutputBuffer(this Worker worker, string tensorName)
+      => ((ComputeTensorData)worker.PeekOutput(tensorName).dataOnBackend).buffer;
 }
 
 } // namespace Klak.NNUtils.Extensions

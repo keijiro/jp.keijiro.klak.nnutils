@@ -1,7 +1,7 @@
 {
   "author": "Keijiro Takahashi",
   "dependencies": { "com.unity.sentis": "2.1.0" },
-  "description": "A small collection of utility scripts for Barracuda.",
+  "description": "A small collection of utility scripts for Sentis.",
   "displayName": "NNUtils",
   "keywords": [ "unity" ],
   "license": "Unlicense",

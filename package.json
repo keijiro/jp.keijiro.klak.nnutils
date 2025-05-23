@@ -1,6 +1,6 @@
 {
   "author": "Keijiro Takahashi",
-  "dependencies": { "com.unity.sentis": "2.1.0" },
+  "dependencies": { "com.unity.ai.inference": "2.2.0" },
   "description": "A small collection of utility scripts for Sentis.",
   "displayName": "NNUtils",
   "keywords": [ "unity" ],
@@ -9,5 +9,5 @@
   "repository": "github:keijiro/jp.keijiro.klak.nnutils",
   "unity": "6000.0",
   "unityRelease": "0f1",
-  "version": "2.0.0"
+  "version": "3.0.0"
 }

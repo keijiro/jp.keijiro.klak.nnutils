@@ -1,13 +1,14 @@
 {
+  "name": "jp.keijiro.klak.nnutils",
+  "version": "3.0.1",
+  "displayName": "NNUtils",
+  "description": "A small collection of utility scripts for Sentis.",
+  "unity": "6000.0",
   "author": "Keijiro Takahashi",
   "dependencies": { "com.unity.ai.inference": "2.2.1" },
-  "description": "A small collection of utility scripts for Sentis.",
-  "displayName": "NNUtils",
-  "keywords": [ "unity" ],
+  "changelogUrl": "https://github.com/keijiro/jp.keijiro.klak.nnutils/blob/main/CHANGELOG.md",
+  "documentationUrl": "https://github.com/keijiro/jp.keijiro.klak.nnutils",
+  "licensesUrl": "https://github.com/keijiro/jp.keijiro.klak.nnutils/blob/main/LICENSE",
   "license": "Unlicense",
-  "name": "jp.keijiro.klak.nnutils",
-  "repository": "github:keijiro/jp.keijiro.klak.nnutils",
-  "unity": "6000.0",
-  "unityRelease": "0f1",
-  "version": "3.0.1"
+  "_upm": { "changelog": "" }
 }
